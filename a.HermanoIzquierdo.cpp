@@ -2,12 +2,13 @@ HermanoIzquierdo(nRef, A) {
     C.Iniciar()
     C.Encolar(A.Raiz())
     n = nodo_nulo
-    while !C.Vacia() {
+    continuar = verdadero
+    while !C.Vacia() && continuar {
         n = C.Desencolar()
         nh = A.HijoMasIzquierdo(n)
         if nh == nRef {
             n = nodo_nulo
-            C.Vaciar()
+            continuar = falso
         }
         else {
             while nh != nodo_nulo {
@@ -15,7 +16,7 @@ HermanoIzquierdo(nRef, A) {
                 if n == nRef {
                     n = nh
                     nh = nodo_nulo
-                    C.Vaciar()
+                    continuar = falso
                 }
                 else {
                     C.Encolar(nh)
