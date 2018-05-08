@@ -1,21 +1,21 @@
 Niveles(A) {
-    if A.Vacio() {
-        return 0
-    }
-    else {
-        NivelesR(A.Raiz())
-    }
+    contNivelesGlobal = 0
+    NivelesR(0, A.Raiz())
+    return contNivelesGlobal
 }
 
-NivelesR(n) {
-    niveles = 0
+NivelesR(nivelPadre, n) {
+    nivelActual = nivelPadre + 1
     nh = A.HijoMasIzquierdo(n)
-    while nh != nodo_nulo {
-        nivelesnh = NivelesR(nh)
-        if nivelesnh > niveles {
-            niveles = nivelesnh
+    if nh == nodo_nulo {
+        if nivelActual > contNivelesGlobal {
+            contNivelesGlobal = nivelActual
         }
-        nh = A.HermanoDerecho(nh)
     }
-    return niveles + 1
+    else {
+        while nh != nodo_nulo {
+            NivelesR(nivelActual, nh)
+            nh = A.HermanoDerecho(nh)
+        }
+    }
 }
