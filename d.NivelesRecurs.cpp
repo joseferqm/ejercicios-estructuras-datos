@@ -6,13 +6,13 @@ Niveles(A) {
 
 NivelesR(nivelPadre, n) {
     nivelActual = nivelPadre + 1
-    nh = A.HijoMasIzquierdo(n)
-    if nh == nodo_nulo {
+    if A.EsHoja(n) {
         if nivelActual > contNivelesGlobal {
             contNivelesGlobal = nivelActual
         }
     }
     else {
+        nh = A.HijoMasIzquierdo(n)
         while nh != nodo_nulo {
             NivelesR(nivelActual, nh)
             nh = A.HermanoDerecho(nh)
