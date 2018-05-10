@@ -1,45 +1,27 @@
 EtiquetasRepetidas(A) {
-    C.Iniciar()
-    CEtiquetas1.Iniciar()
-    C.Encolar(A.Raiz())
-    while !C1.Vacia() {
-        n = C1.Desencolar()
-        CEtiquetas1.Encolar(A.Etiqueta(n))
-        nh = A.HijoMasIzquierdo(n)
-        while nh != nodo_nulo {
-            C1.Encolar(nh)
-            nh = A.HermanoDerecho(nh)
-        }
-    }
-    C.Destruir()
-    CEtiquetas2.Iniciar()
+    L.Iniciar()
+    L.AgregarAlFinal(A.Raiz())
+    p = L.Primera()
     continuar = verdadero
-    while !CEtiquetas1.Vacia() && continuar {
-        e1 = CEtiquetas1.Desencolar()
-        while !CEtiquetas1.Vacia() && continuar {
-            e2 = CEtiquetas1.Desencolar()
-            if e2 == e1 {
-                continuar = falso
-            }
-            else {
-                CEtiquetas2.Encolar(e2)
-            }
-        }
-
-        if !CEtiquetas2.Vacia() && continuar {
-            e1 = CEtiquetas2.Desencolar()
-            while !CEtiquetas2.Vacia() && continuar {
-                e2 = CEtiquetas2.Desencolar()
-                if e2 == e1 {
-                    continuar = falso
+    while p != pos_nula && continuar {
+        n = L.Recuperar(p)
+        nh = A.HijoMasIzquierdo(n)
+        while nh != nodo_nulo && continuar {
+            q = L.Ultima()
+            L.AgregarAlFinal(nh)
+            e = A.Recuperar(nh)
+            while q != pos_nula && continuar {
+                if A.Etiqueta(L.Recuperar(q)) == e {
+                    continuar = false
                 }
                 else {
-                    CEtiquetas1.Encolar(e2)
+                    q = L.Anterior(q)
                 }
             }
+            nh = A.HermanoDerecho(nh)
         }
+        p = L.Siguiente(p)
     }
-    CEtiquetas1.Destruir()
-    CEtiquetas2.Destruir()
+    L.Destruir()
     return !continuar
 }
