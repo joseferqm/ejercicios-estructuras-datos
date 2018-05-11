@@ -9,10 +9,10 @@ EtiquetasRepetidas(A) {
         while nh != nodo_nulo && continuar {
             q = L.Ultima()
             L.AgregarAlFinal(nh)
-            e = A.Recuperar(nh)
+            e = A.Etiqueta(nh)
             while q != pos_nula && continuar {
                 if A.Etiqueta(L.Recuperar(q)) == e {
-                    continuar = false
+                    continuar = falso
                 }
                 else {
                     q = L.Anterior(q)
